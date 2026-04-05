@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,12 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/category', [AdminController::class, 'category'])->name('category');
+    Route::get('/addCategory', [AdminController::class, 'addCategory'])->name('addCategory');
     Route::get('/customer', [AdminController::class, 'customer'])->name('customer');
     Route::get('/products', [AdminController::class, 'product'])->name('product');
     Route::get('/create-sale', [AdminController::class, 'createSale'])->name('createSale');
     Route::get('/invoice', [AdminController::class, 'invoice'])->name('invoice');
+
+
+    Route::resource('categories', CategoryController::class);
 });
